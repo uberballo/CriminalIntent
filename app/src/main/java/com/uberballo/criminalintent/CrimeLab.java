@@ -21,7 +21,7 @@ public class CrimeLab {
     private CrimeLab(Context context){
         mCrimes = new ArrayList<>();
         Crime crime2 = new Crime();
-        crime2.setTitle("Joken sukupuoli oletettiit");
+        crime2.setTitle("Test crime");
         crime2.setRequiresPolice(true);
         mCrimes.add(crime2);
         for (int i = 0; i<100;i++){
