@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.DatePicker;
@@ -58,11 +59,15 @@ public class DatePickerFragment extends DialogFragment {
                         new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
+                                Date date = (Date) getArguments().getSerializable(ARG_DATE);
                                 int year = mDatePicker.getYear();
-                                int month = mDatePicker.getMonth();
-                                int day = mDatePicker.getDayOfMonth();
-                                Date date = new GregorianCalendar(year, month, day).getTime();
-                                sendResult(Activity.RESULT_OK, date);
+                                Calendar calendar = Calendar.getInstance();
+                                calendar.set(mDatePicker.getYear(),
+                                        mDatePicker.getMonth(),
+                                        mDatePicker.getDayOfMonth(),
+                                        date.getHours(),
+                                        date.getMinutes());
+                                sendResult(Activity.RESULT_OK, calendar.getTime());
                             }
                         })
                 .create();
